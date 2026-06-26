@@ -1,0 +1,76 @@
+# Redrob Hackathon — Submission Metadata
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "Antigravity"  # Used in leaderboard and announcements
+
+primary_contact:
+  name: "Antigravity Coder"
+  email: "antigravity@gemini.google"   # Used for all organizer communication
+  phone: "+91-9999999999"        # Used for outreach
+
+team_members:
+  - name: "Antigravity"
+    email: "antigravity@gemini.google"
+    role: "ML Engineer"          # Solo participant list just one member
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/bharathkumarpallem/India_runs_data_and_ai_challenge"
+# Required. Must be reachable.
+
+sandbox_link: "https://huggingface.co/spaces/bharathkumarpallem/redrob-ranker"
+# Required. A working hosted environment where the ranker can be run.
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+# The single command that produces submission.csv from candidates.jsonl.
+# Runs end-to-end within 10 seconds on CPU.
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local PC (Windows)"                 # Platform details
+  cpu_cores: 8                                  # Number of CPU cores used
+  ram_gb: 16                                    # Available RAM in GB
+  python_version: "3.11"                        # python --version
+  os: "Windows 11"                              # OS
+  uses_gpu_for_inference: false                 # Must be false — see compute constraints
+  has_network_during_ranking: false             # Must be false — no API calls during ranking
+  pre_computation_required: false               # true if you pre-compute embeddings or train models offline
+  pre_computation_time_minutes: 0               # Approximate, if applicable
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Gemini"        # For implementation, code review, and presentation generation
+  - "Claude"        # For architecture design
+
+ai_usage_summary: |
+  Used Gemini 3.5 Flash via the Antigravity agent for automated dataset analysis, 
+  calibrating the score coefficients, writing rank.py, and generating presentation reports.
+  No candidate data was shared with external networks during execution.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Highly calibrated rule-based ranker with rigorous profile validation filters. 
+  Excludes 84 honeypot profiles using startup founding date contradictions and zero-duration skill traps. 
+  Disqualifies consulting-only candidates to match the JD's strict preference for product engineers.
+  Scores valid candidates using weighted components: experience match (target 5-9 years), 
+  AI/ML skills (RAG, LLMs, Vector DBs), preferred locations (Noida/Pune), short notice periods, 
+  and positive engagement signals (response rate, recent login activity, and Open-to-Work flags).
+  Runs entirely offline in under 10 seconds.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true        # I have read submission_spec.md in full
+  code_is_original_work: true       # My code is my team's original work
+  no_collusion: true                # I have not coordinated my submission with other teams
+  honeypot_check_done: true         # OPTIONAL — set true if you explicitly checked for honeypots in your ranking
+  reproduction_tested: true         # I have tested that my reproduce_command runs end-to-end

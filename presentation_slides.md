@@ -10,10 +10,8 @@ This document contains copy-pasteable content for each of the 11 slides in the *
 **redrob | H2S — INDIA.RUNS**
 *Build what next India runs on*
 
-### Slide Content (Details Box)
-* **Team Name:** Bharath Kumar Pallem
-* **Team Leader Name:** Bharath Kumar Pallem
-* **Problem Statement:** Ingest, sanitize, and score 100,000 resume profiles and output the Top 100 candidate matches for the Senior AI Engineer (Founding Team) role, running completely offline under 5 minutes on CPU.
+### Slide Content
+* *Note: To maintain the visual aesthetic of the background cover graphic, the Participant Metadata & Problem Statement details have been positioned on Slide 2.*
 
 ### Speaker Notes
 > "Hello everyone, my name is Bharath Kumar Pallem. Today I am presenting my AI-Native Candidate Discovery and Ranking System, built for the Redrob INDIA.RUNS Hackathon. Our challenge is to filter out bad profiles and accurately rank 100,000 candidates to select the absolute best matches for a Senior AI Engineer founding team role, all within strict CPU, memory, and offline execution limits."
@@ -26,9 +24,15 @@ This document contains copy-pasteable content for each of the 11 slides in the *
 **2. Solution Overview**
 
 ### Slide Content
+#### Participant Metadata & Challenge Goal
+* **Team Name:** Bharath Kumar Pallem
+* **Team Leader Name:** Bharath Kumar Pallem
+* **Problem Statement:** Build an offline AI Candidate Discovery & Ranking System to ingest, clean, and score 100,000 resume profiles and output the Top 100 candidate matches for the Senior AI Engineer role within 5 minutes on CPU.
+
+#### Core Approach
 We propose a **highly optimized, multi-stage filtering and calibrated heuristic scoring engine** written in standard Python. It executes fully offline without calling network-bound APIs.
 
-#### Core Differentiators
+#### Core Differentiators (Traditional vs. AI-Native)
 * **Weighted Skill Expansion:** Maps candidate skill tokens to synonyms (e.g. RAG to Retrieval-Augmented Generation) and computes score values based on actual experience.
 * **Structural Sanitizer:** Audits dates and skill duration logs, filtering out candidate traps before scoring.
 * **Product-Mindset Filter:** Disqualifies consulting-only profiles to match the JD's founding team culture.

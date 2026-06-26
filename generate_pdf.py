@@ -230,45 +230,41 @@ def build_pdf(filename="presentation.pdf"):
     # =========================================================================
     # SLIDE 1: COVER PAGE
     # =========================================================================
-    story.append(Spacer(1, 2.5 * inch))  # Push text below the redrob logo space
-    
-    # Determine cover page text and line colors based on cover image presence
-    dir_path = os.path.dirname(os.path.abspath(__file__))
-    cover_img_exists = os.path.exists(os.path.join(dir_path, "cover.png"))
-    cover_text_color = PRIMARY if cover_img_exists else colors.white
-    cover_line_color = colors.HexColor("#94a3b8") if cover_img_exists else colors.HexColor("#e2e8f0")
-    
-    cover_table_data = [
-        [Paragraph("<b>Team Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
-         Paragraph(TEAM_NAME, ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
-        [Paragraph("<b>Team Leader Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
-         Paragraph(TEAM_LEADER_NAME, ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
-        [Paragraph("<b>Problem Statement :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
-         Paragraph(PROBLEM_STATEMENT, ParagraphStyle('WValLong', parent=styles['Normal'], textColor=cover_text_color, fontSize=10, leading=13))]
-    ]
-    cover_table = Table(cover_table_data, colWidths=[1.8 * inch, 5.0 * inch])
-    cover_table.setStyle(TableStyle([
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('LINEBELOW', (0,0), (-1,-2), 0.5, cover_line_color),
-        ('TOPPADDING', (0,0), (-1,-1), 8),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 8),
-    ]))
-    story.append(cover_table)
+    # Left completely empty of text flowables so the background cover.png is fully visible.
+    story.append(Spacer(1, 0.1 * inch))
     story.append(PageBreak())
     
     # =========================================================================
     # SLIDE 2: SOLUTION OVERVIEW
     # =========================================================================
     story.append(Paragraph("2. Solution Overview", slide_title_style))
-    story.append(Spacer(1, 0.1 * inch))
+    story.append(Spacer(1, 0.05 * inch))
+    
+    # Metadata callout box
+    meta_table_data = [
+        [Paragraph(f"<b>Team Name:</b> {TEAM_NAME} &nbsp;&nbsp;|&nbsp;&nbsp; <b>Team Leader Name:</b> {TEAM_LEADER_NAME}", ParagraphStyle('MetaS2', parent=styles['Normal'], fontSize=9.5, textColor=TEXT_DARK))],
+        [Paragraph(f"<b>Problem Statement:</b> {PROBLEM_STATEMENT}", ParagraphStyle('MetaS2Long', parent=styles['Normal'], fontSize=9, leading=12, textColor=TEXT_DARK))]
+    ]
+    meta_table = Table(meta_table_data, colWidths=[9.8 * inch])
+    meta_table.setStyle(TableStyle([
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#f1f5f9")),
+        ('BOX', (0,0), (-1,-1), 0.5, colors.HexColor("#cbd5e1")),
+        ('TOPPADDING', (0,0), (-1,-1), 4),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 4),
+        ('LEFTPADDING', (0,0), (-1,-1), 8),
+        ('RIGHTPADDING', (0,0), (-1,-1), 8),
+    ]))
+    story.append(meta_table)
+    story.append(Spacer(1, 0.05 * inch))
     
     overview_text = """
     We propose a <b>highly optimized, multi-stage filtering and heuristic scoring pipeline</b> built completely in offline Python. 
     Rather than calling expensive external LLM APIs (which violate latency, offline, and cost limits at scale), our system inspects candidate profiles line-by-line, runs them through logic validation gates, and uses a calibrated log-scaled scoring algorithm to rank fits.
     """
     story.append(Paragraph(overview_text, body_style))
-    story.append(Spacer(1, 0.1 * inch))
+    story.append(Spacer(1, 0.05 * inch))
     
     diff_data = [
         [Paragraph("<b>Traditional Keyword Matching Systems</b>", table_header_style), Paragraph("<b>Our AI-Native Ranking Approach</b>", table_header_style)],
@@ -281,13 +277,17 @@ def build_pdf(filename="presentation.pdf"):
         [Paragraph("• Blind to structural context (ranking candidates with services-only background).", table_text_style), 
          Paragraph("• <b>Product Engineering Bias:</b> Disqualifies consulting-only profiles to align with the JD's founding team culture.", table_text_style)]
     ]
-    t_diff = Table(diff_data, colWidths=[3.5 * inch, 3.5 * inch])
+    t_diff = Table(diff_data, colWidths=[4.9 * inch, 4.9 * inch])
     t_diff.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), SECONDARY),
         ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
         ('GRID', (0,0), (-1,-1), 0.5, LINE_COLOR),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, BG_LIGHT])
+        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, BG_LIGHT]),
+        ('TOPPADDING', (0,0), (-1,-1), 4),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 4),
+        ('LEFTPADDING', (0,0), (-1,-1), 8),
+        ('RIGHTPADDING', (0,0), (-1,-1), 8),
     ]))
     story.append(t_diff)
     story.append(PageBreak())

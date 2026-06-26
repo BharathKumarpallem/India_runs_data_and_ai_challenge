@@ -5,6 +5,14 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
+# =========================================================================
+# PRESENTATION COVER CONFIGURATION
+# Adjust these values to change the details on the first slide
+# =========================================================================
+TEAM_NAME = "Bharath Kumar Pallem"
+TEAM_LEADER_NAME = "Bharath Kumar Pallem"
+PROBLEM_STATEMENT = "Build an offline AI Candidate Discovery & Ranking System to ingest, clean, and score 100,000 resume profiles and output the Top 100 candidate matches for the Senior AI Engineer role within 5 minutes on CPU."
+
 
 # Define custom corporate color palette matching the event
 PRIMARY = colors.HexColor("#1e293b")      # Deep slate blue
@@ -226,11 +234,11 @@ def build_pdf(filename="presentation.pdf"):
     
     cover_table_data = [
         [Paragraph("<b>Team Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
-         Paragraph("Bharath Kumar Pallem", ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
+         Paragraph(TEAM_NAME, ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
         [Paragraph("<b>Team Leader Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
-         Paragraph("Bharath Kumar Pallem", ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
+         Paragraph(TEAM_LEADER_NAME, ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
         [Paragraph("<b>Problem Statement :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
-         Paragraph("Build an offline AI Candidate Discovery & Ranking System to ingest, clean, and score 100,000 resume profiles and output the Top 100 candidate matches for the Senior AI Engineer role within 5 minutes on CPU.", ParagraphStyle('WValLong', parent=styles['Normal'], textColor=cover_text_color, fontSize=10, leading=13))]
+         Paragraph(PROBLEM_STATEMENT, ParagraphStyle('WValLong', parent=styles['Normal'], textColor=cover_text_color, fontSize=10, leading=13))]
     ]
     cover_table = Table(cover_table_data, colWidths=[1.8 * inch, 5.0 * inch])
     cover_table.setStyle(TableStyle([

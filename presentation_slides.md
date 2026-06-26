@@ -10,8 +10,10 @@ This document contains copy-pasteable content for each of the 11 slides in the *
 **redrob | H2S — INDIA.RUNS**
 *Build what next India runs on*
 
-### Slide Content
-* *Note: To maintain the visual aesthetic of the background cover graphic, the Participant Metadata & Problem Statement details have been positioned on Slide 2.*
+### Slide Content (Details Box)
+* **Team Name:** Bharath Kumar Pallem
+* **Team Leader Name:** Bharath Kumar Pallem
+* **Problem Statement:** Build an offline AI Candidate Discovery & Ranking System to ingest, clean, and score 100,000 resume profiles and output the Top 100 candidate matches for the Senior AI Engineer role within 5 minutes on CPU.
 
 ### Speaker Notes
 > "Hello everyone, my name is Bharath Kumar Pallem. Today I am presenting my AI-Native Candidate Discovery and Ranking System, built for the Redrob INDIA.RUNS Hackathon. Our challenge is to filter out bad profiles and accurately rank 100,000 candidates to select the absolute best matches for a Senior AI Engineer founding team role, all within strict CPU, memory, and offline execution limits."

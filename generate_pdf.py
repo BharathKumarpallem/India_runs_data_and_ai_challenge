@@ -34,8 +34,13 @@ class PresentationCanvas(canvas.Canvas):
         for page in self.pages:
             self.__dict__.update(page)
             if self._pageNumber == 1:
-                self.draw_gradient_background()
-                self.draw_logo_and_brand(is_thank_you=False)
+                dir_path = os.path.dirname(os.path.abspath(__file__))
+                img_path = os.path.join(dir_path, "cover.png")
+                if os.path.exists(img_path):
+                    self.drawImage(img_path, 0, 0, 792, 612)
+                else:
+                    self.draw_gradient_background()
+                    self.draw_logo_and_brand(is_thank_you=False)
             elif self._pageNumber == num_pages:
                 dir_path = os.path.dirname(os.path.abspath(__file__))
                 img_path = os.path.join(dir_path, "thank_you.png")
@@ -213,19 +218,25 @@ def build_pdf(filename="presentation.pdf"):
     # =========================================================================
     story.append(Spacer(1, 2.5 * inch))  # Push text below the redrob logo space
     
+    # Determine cover page text and line colors based on cover image presence
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    cover_img_exists = os.path.exists(os.path.join(dir_path, "cover.png"))
+    cover_text_color = PRIMARY if cover_img_exists else colors.white
+    cover_line_color = colors.HexColor("#94a3b8") if cover_img_exists else colors.HexColor("#e2e8f0")
+    
     cover_table_data = [
-        [Paragraph("<b>Team Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=colors.white, fontSize=11)), 
-         Paragraph("Bharath Kumar Pallem", ParagraphStyle('WVal', parent=styles['Normal'], textColor=colors.white, fontSize=11))],
-        [Paragraph("<b>Team Leader Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=colors.white, fontSize=11)), 
-         Paragraph("Bharath Kumar Pallem", ParagraphStyle('WVal', parent=styles['Normal'], textColor=colors.white, fontSize=11))],
-        [Paragraph("<b>Problem Statement :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=colors.white, fontSize=11)), 
-         Paragraph("Build an offline AI Candidate Discovery & Ranking System to ingest, clean, and score 100,000 resume profiles and output the Top 100 candidate matches for the Senior AI Engineer role within 5 minutes on CPU.", ParagraphStyle('WValLong', parent=styles['Normal'], textColor=colors.white, fontSize=10, leading=13))]
+        [Paragraph("<b>Team Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
+         Paragraph("Bharath Kumar Pallem", ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
+        [Paragraph("<b>Team Leader Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
+         Paragraph("Bharath Kumar Pallem", ParagraphStyle('WVal', parent=styles['Normal'], textColor=cover_text_color, fontSize=11))],
+        [Paragraph("<b>Problem Statement :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
+         Paragraph("Build an offline AI Candidate Discovery & Ranking System to ingest, clean, and score 100,000 resume profiles and output the Top 100 candidate matches for the Senior AI Engineer role within 5 minutes on CPU.", ParagraphStyle('WValLong', parent=styles['Normal'], textColor=cover_text_color, fontSize=10, leading=13))]
     ]
     cover_table = Table(cover_table_data, colWidths=[1.8 * inch, 5.0 * inch])
     cover_table.setStyle(TableStyle([
         ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('LINEBELOW', (0,0), (-1,-2), 0.5, colors.HexColor("#94a3b8")),
+        ('LINEBELOW', (0,0), (-1,-2), 0.5, cover_line_color),
         ('TOPPADDING', (0,0), (-1,-1), 8),
         ('BOTTOMPADDING', (0,0), (-1,-1), 8),
     ]))

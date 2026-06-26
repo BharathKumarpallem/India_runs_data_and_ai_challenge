@@ -33,6 +33,17 @@ class PresentationCanvas(canvas.Canvas):
         super().__init__(*args, **kwargs)
         self.pages = []
 
+    def _startPage(self):
+        super()._startPage()
+        if self._pageNumber == 1:
+            dir_path = os.path.dirname(os.path.abspath(__file__))
+            img_path = os.path.join(dir_path, "cover.png")
+            if os.path.exists(img_path):
+                self.drawImage(img_path, 0, 0, 792, 612)
+            else:
+                self.draw_gradient_background()
+                self.draw_logo_and_brand(is_thank_you=False)
+
     def showPage(self):
         self.pages.append(dict(self.__dict__))
         self._startPage()
@@ -42,13 +53,8 @@ class PresentationCanvas(canvas.Canvas):
         for page in self.pages:
             self.__dict__.update(page)
             if self._pageNumber == 1:
-                dir_path = os.path.dirname(os.path.abspath(__file__))
-                img_path = os.path.join(dir_path, "cover.png")
-                if os.path.exists(img_path):
-                    self.drawImage(img_path, 0, 0, 792, 612)
-                else:
-                    self.draw_gradient_background()
-                    self.draw_logo_and_brand(is_thank_you=False)
+                # Background was already drawn in _startPage, do nothing here
+                pass
             elif self._pageNumber == num_pages:
                 dir_path = os.path.dirname(os.path.abspath(__file__))
                 img_path = os.path.join(dir_path, "thank_you.png")

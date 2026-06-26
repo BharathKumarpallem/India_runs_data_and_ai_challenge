@@ -54,7 +54,7 @@ class PresentationCanvas(canvas.Canvas):
             # Footer text
             self.setFillColor(TEXT_LIGHT)
             self.setFont("Helvetica", 8)
-            self.drawString(36, 25, "Team Antigravity | Intelligent Ranking System")
+            self.drawString(36, 25, "Bharath Kumar Pallem | Intelligent Ranking System")
             self.drawRightString(756, 25, f"Slide {self._pageNumber} of {num_pages}")
             
         self.restoreState()
@@ -164,7 +164,7 @@ def build_pdf(filename="presentation.pdf"):
     story.append(Spacer(1, 0.5 * inch))
     
     cover_meta = """
-    <b>Prepared by:</b> Team Antigravity<br/>
+    <b>Prepared by:</b> Bharath Kumar Pallem<br/>
     <b>Challenge:</b> Redrob Data & AI Challenge 2026<br/>
     <b>Methodology:</b> Offline Calibrated Heuristics + Multi-stage Filtering<br/>
     <b>Execution Time:</b> &lt;10 seconds on standard CPU

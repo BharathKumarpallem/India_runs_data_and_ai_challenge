@@ -13,13 +13,13 @@ This document contains copy-pasteable content for each slide of the **Intelligen
 *Recruiting at Scale for the Senior AI Engineer (Founding Team) Role*
 
 ### Slide Content (Key Details)
-* **Team:** Antigravity
+* **Prepared by:** Bharath Kumar Pallem
 * **Challenge:** Redrob Data & AI Challenge 2026
 * **Core Approach:** Multi-stage Filtering + Calibrated Offline Heuristics
 * **Performance Benchmark:** <10 Seconds Execution Time on standard CPU
 
 ### Speaker Notes
-> "Hello everyone, we are Team Antigravity. Today we are presenting our AI-Native Candidate Discovery and Ranking System, built for the Redrob Data & AI Challenge. Our objective is to solve the critical task of matching a highly specific, early-stage job description—the Senior AI Engineer for a founding team—with a pool of 100,000 candidates. Our approach balances extremely strict filtration of data traps with a mathematical, calibrated heuristic scoring model that runs fully offline on CPU in under 4 seconds."
+> "Hello everyone, I am Bharath Kumar Pallem. Today I am presenting my AI-Native Candidate Discovery and Ranking System, built for the Redrob Data & AI Challenge. My objective is to solve the critical task of matching a highly specific, early-stage job description—the Senior AI Engineer for a founding team—with a pool of 100,000 candidates. My approach balances extremely strict filtration of data traps with a mathematical, calibrated heuristic scoring model that runs fully offline on CPU in under 4 seconds."
 
 ---
 

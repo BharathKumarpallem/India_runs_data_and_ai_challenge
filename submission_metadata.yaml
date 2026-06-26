@@ -2,16 +2,16 @@
 # ============================================================================
 # Team identity
 # ============================================================================
-team_name: "Antigravity"  # Used in leaderboard and announcements
+team_name: "Bharath Kumar Pallem"  # Used in leaderboard and announcements
 
 primary_contact:
-  name: "Antigravity Coder"
-  email: "antigravity@gemini.google"   # Used for all organizer communication
+  name: "Bharath Kumar Pallem"
+  email: "bharathkumarpallem@gmail.com"   # Used for all organizer communication
   phone: "+91-9999999999"        # Used for outreach
 
 team_members:
-  - name: "Antigravity"
-    email: "antigravity@gemini.google"
+  - name: "Bharath Kumar Pallem"
+    email: "bharathkumarpallem@gmail.com"
     role: "ML Engineer"          # Solo participant list just one member
 
 # ============================================================================

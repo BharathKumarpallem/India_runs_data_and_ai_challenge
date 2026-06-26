@@ -1,4 +1,4 @@
-# Intelligent Candidate Discovery & Ranking System (Team Antigravity)
+# Intelligent Candidate Discovery & Ranking System (Bharath Kumar Pallem)
 
 This repository contains the AI candidate ranking system developed for the **Redrob Data & AI Challenge 2026**. 
 

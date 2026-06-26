@@ -230,13 +230,11 @@ def build_pdf(filename="presentation.pdf"):
     # =========================================================================
     # SLIDE 1: COVER PAGE
     # =========================================================================
-    story.append(Spacer(1, 2.5 * inch))  # Push text below the redrob logo space
+    story.append(Spacer(1, 4.2 * inch))  # Push text below the central cover graphics (logo, title, pill)
     
-    # Determine cover page text and line colors based on cover image presence
-    dir_path = os.path.dirname(os.path.abspath(__file__))
-    cover_img_exists = os.path.exists(os.path.join(dir_path, "cover.png"))
-    cover_text_color = PRIMARY if cover_img_exists else colors.white
-    cover_line_color = colors.HexColor("#94a3b8") if cover_img_exists else colors.HexColor("#e2e8f0")
+    # Use bright white text for visibility on the dark background image
+    cover_text_color = colors.white
+    cover_line_color = colors.HexColor("#64748b")
     
     cover_table_data = [
         [Paragraph("<b>Team Name :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
@@ -246,7 +244,7 @@ def build_pdf(filename="presentation.pdf"):
         [Paragraph("<b>Problem Statement :</b>", ParagraphStyle('WLabel', parent=styles['Normal'], fontName='Helvetica-Bold', textColor=cover_text_color, fontSize=11)), 
          Paragraph(PROBLEM_STATEMENT, ParagraphStyle('WValLong', parent=styles['Normal'], textColor=cover_text_color, fontSize=10, leading=13))]
     ]
-    cover_table = Table(cover_table_data, colWidths=[1.8 * inch, 5.0 * inch])
+    cover_table = Table(cover_table_data, colWidths=[2.0 * inch, 5.0 * inch], hAlign='CENTER')
     cover_table.setStyle(TableStyle([
         ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),

@@ -33,9 +33,17 @@ class PresentationCanvas(canvas.Canvas):
         num_pages = len(self.pages)
         for page in self.pages:
             self.__dict__.update(page)
-            if self._pageNumber == 1 or self._pageNumber == num_pages:
+            if self._pageNumber == 1:
                 self.draw_gradient_background()
-                self.draw_logo_and_brand(is_thank_you=(self._pageNumber == num_pages))
+                self.draw_logo_and_brand(is_thank_you=False)
+            elif self._pageNumber == num_pages:
+                dir_path = os.path.dirname(os.path.abspath(__file__))
+                img_path = os.path.join(dir_path, "thank_you.png")
+                if os.path.exists(img_path):
+                    self.drawImage(img_path, 0, 0, 792, 612)
+                else:
+                    self.draw_gradient_background()
+                    self.draw_logo_and_brand(is_thank_you=True)
             else:
                 self.draw_slide_decorations(num_pages)
             super().showPage()
